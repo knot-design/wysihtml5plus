@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="../dist/wysihtml5plus.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+    <section>
+        <h1>Counter</h1>
+        <h3>Character counter.</h3>
+        <div class="tabs">
+            <ul>
+                <li>Demo</li>
+                <li>Source</li>
+            </ul>
+            <div class="tab-content">
+        <textarea id="counter" class="e-short">
+           <p>Lorem ipsum dolor sit amet, has ponderum platonem an, no eam ridens ancillae. Vix in sale sententiae. At solet inermis repudiandae quo, facete facilis te cum, pro eu magna choro sanctus. Sed summo appetere ut. Mel ne exerci legimus, pri option veritus intellegam ne.</p>
+           <p>Liber regione tincidunt ea eos, pro an veniam causae sadipscing. Te dicam dolore inciderint duo, probo quaestio percipitur no cum. Te atqui putent forensibus vim, eum te virtute sadipscing, ancillae suavitate interesset at sea. Iusto volutpat mel ad, fastidii delicata ad eum. Id nam movet praesent. Nostro laoreet cu sea, est omittam molestie suavitate at.</p>
+       </textarea>
+        <h3>Limit the number of characters.</h3>
+        <textarea id="limiter" class="e-short">
+          <h2>Try to type text!</h2>
+           <p>Lorem ipsum dolor sit amet, has ponderum platonem an, no eam ridens ancillae. Vix in sale sententiae. At solet inermis repudiandae quo, facete facilis te cum, pro eu magna choro sanctus. Sed summo appetere ut. Mel ne exerci legimus, pri option veritus intellegam ne.</p>
+           <p>Liber regione tincidunt ea eos, pro an veniam causae sadipscing. Te dicam dolore inciderint duo, probo quaestio percipitur no cum. Te atqui putent forensibus vim, eum te virtute sadipscing, ancillae suavitate interesset at sea. Iusto volutpat mel ad, fastidii delicata ad eum. Id nam movet praesent. Nostro laoreet cu sea, est omittam molestie suavitate at.</p>
+       </textarea>
+                
+            </div>
+            <div class="tab-content">
+                <pre><code class="language-javascript">var editor = new wysihtml5.Editor('counter', {
+    toolbar: {
+        button: ['inline', 'block']
+    },
+    counter: 1,
+    limiter: 600, // Limit the number of characters a user can enter.
+    parserRules: wysihtml5ParserRules
+});
+</code></pre>
+            </div>
+                
+            </div>
+
+    </section>
+
+
+    <script src="js/examples.js"></script>
+    <script src="../dist/wysihtml5plus.min.js"></script>
+    <script src="../parser_rules/advanced_and_extended.js"></script>
+    <script class="async">
+        var editor1 = new wysihtml5.Editor('counter', {
+                toolbar: {
+                    button: ['inline', 'block']
+                },
+                counter: 1,
+                contentEditableMode: true,
+                parserRules: wysihtml5ParserRules
+            }),
+            editor2 = new wysihtml5.Editor('limiter', {
+                toolbar: {
+                    button: ['inline', 'block']
+                },
+                counter: 1,
+                limiter: 600,
+                contentEditableMode: true,
+                parserRules: wysihtml5ParserRules
+            });
+    </script>
+
+</body>
+
+</html>

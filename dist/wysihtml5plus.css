@@ -1,0 +1,1230 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* Editor
+   ========================================================================== */
+
+.wysihtml5-box {
+    position: relative;
+}
+
+.wysihtml5-box-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1051;
+    background-color: #fff;
+}
+
+.wysihtml5-editor:focus {
+    outline: 1px dotted #86daf2;
+}
+
+.wysihtml5-editor img {
+    cursor: pointer;
+}
+
+iframe.wysihtml5-sandbox,
+.wysihtml5-textarea {
+    width: 100%;
+    min-height: 400px;
+    height: 100%;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    vertical-align: bottom;
+}
+
+.wysihtml5-textarea {
+    padding: 10px;
+    word-wrap: normal;
+    overflow-x: auto;
+    margin: 0;
+}
+
+.wysihtml5-current-view-textarea {
+    position: relative;
+    background-color: rgb(25, 25, 25);
+    color: rgba(255, 255, 255, .9);
+    line-height: 1.54rem;
+    font-size: .9rem;
+    z-index: 1000;
+}
+
+
+/* Toolbar
+   ========================================================================== */
+
+.wysihtml5-toolbar[disabled] {
+    visibility: hidden;
+    display: none;
+}
+
+.wysihtml5-toolbar {
+    color: rgba(0, 0, 0, .7);
+}
+
+.wysihtml5-toolbar a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wysihtml5-toolbar ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.wysihtml5-toolbar li {
+    list-style-type: none;
+}
+
+ul.wysihtml5-toolbar-buttons {
+    color: rgba(0, 0, 0, .86);
+    background-color: #fff;
+    padding: 0 .4rem;
+    margin: 0;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, .1);
+}
+
+.wysihtml5-toolbar-air .wysihtml5-toolbar-buttons {
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0;
+    color: rgba(0, 0, 0, .90);
+    background-color: rgba(255, 255, 255, .88);
+    max-width: 80%;
+    border-left: none;
+    margin-left: 0;
+    border-radius: 2rem;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    padding: 0 .6rem;
+}
+
+.wysihtml5-toolbar-textarea {
+    position: relative;
+}
+
+.wysihtml5-toolbar-textarea .wysihtml5-toolbar-buttons {
+    opacity: 1;
+}
+
+.wysihtml5-toolbar-textarea .wysihtml5-toolbar-buttons.sticky {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    border: none;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, .1);
+}
+
+.wysihtml5-toolbar-buttons.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.wysihtml5-toolbar-buttons>li {
+    display: inline-block;
+}
+
+.wysihtml5-commands-disabled .wysihtml5-btn:not(.wysihtml5-action-active) {
+    opacity: .4;
+    cursor: default;
+}
+
+.wysihtml5-toolbar-air .wysihtml5-toolbar-buttons .wysihtml5-btn {
+    border-radius: 0;
+}
+
+.wysihtml5-toolbar-air .wysihtml5-toolbar-buttons .wysihtml5-btn:first-child {
+    border-left: none;
+    margin-left: 0;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.wysihtml5-toolbar-air .wysihtml5-toolbar-buttons .wysihtml5-btn:last-child {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.wysihtml5-toolbar-air .wysihtml5-toolbar-buttons>li:only-of-type .wysihtml5-btn {
+    border-radius: 1rem;
+}
+
+.wysihtml5-command-active,
+.wysihtml5-action-active {
+    color: dodgerblue !important;
+}
+
+.wysihtml5-toolbar-buttons .wysihtml5-btn {
+    color: inherit;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 0;
+}
+
+.wysihtml5-toolbar-buttons .wysihtml5-btn:focus {
+    outline: inherit;
+}
+
+
+/* buttons
+   ========================================================================== */
+
+.wysihtml5-btn {
+    outline: 0;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 0;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 9px 24px 8px;
+    line-height: 1.32857143;
+    color: rgba(0, 0, 0, .6);
+    border-radius: .1rem;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    position: relative;
+}
+
+.wysihtml5-toolbar-buttons>li>.wysihtml5-btn {
+    padding: 12px 14px 14px;
+}
+
+.wysihtml5-toolbar-buttons i {
+    font-size: 15px;
+}
+
+.wysihtml5-toolbar-air .wysihtml5-toolbar-buttons>li>.wysihtml5-btn {
+    padding-top: 14px;
+}
+
+.wysihtml5-btn-save {
+    color: #fff;
+    background-color: #26a69a;
+}
+
+.wysihtml5-btn-cancel {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .02);
+}
+
+.wysihtml5-btn-choose {
+    color: #fff;
+    background-color: #2196f3;
+}
+
+
+/* Dropdown content
+   ========================================================================== */
+
+.wysihtml5-toolbar .wysihtml5-dropdown .wysihtml5-btn:after {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #222222;
+    right: -3px;
+    top: .76em;
+    margin-left: 3px;
+    content: "";
+}
+
+[dir="rtl"].wysihtml5-toolbar .wysihtml5-dropdown .wysihtml5-btn:after {
+    right: 3px;
+    margin-right: 3px;
+}
+
+.wysihtml5-dropdown-content {
+    min-width: 50px;
+    width: auto;
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    visibility: hidden;
+    line-height: 1;
+    margin: 0;
+    max-height: 0;
+    background-color: #fff;
+    line-height: 1.8rem;
+    opacity: 0;
+    background-color: #fff;
+    color: rgba(0, 0, 0, .86);
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: max-height .3s ease;
+    transition: max-height .3s ease;
+}
+
+.wysihtml5-dropdown-content:not(.wysihtml5-dropdown-with-icon) {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.wysihtml5-dropdown.active .wysihtml5-dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    max-height: 24.37142857rem;
+}
+
+.wysihtml5-dropdown-content li {
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .07);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .07);
+}
+
+.wysihtml5-dropdown-content.wysihtml5-dropdown-table li {
+    padding: .2em .4em;
+    font-size: .92em;
+}
+
+.wysihtml5-dropdown-content li>* {
+    display: block;
+    cursor: pointer;
+    margin: 0;
+}
+
+.wysihtml5-dropdown-content li:not(.wysihtml5-style-list)>*,
+.wysihtml5-dropdown-content li.wysihtml5-style-list {
+    padding: .8rem .7rem;
+    line-height: 1;
+}
+
+.wysihtml5-dropdown-content>li:hover {
+    background-color: inherit;
+    -webkit-box-shadow: 400px 0 0 0 rgba(0, 0, 0, 0.02) inset, 0 1px 0 rgba(0, 0, 0, 0.07);
+    box-shadow: 400px 0 0 0 rgba(0, 0, 0, 0.02) inset, 0 1px 0 rgba(0, 0, 0, 0.07);
+}
+
+.wysihtml5-dropdown-color {
+    width: 210px;
+}
+
+.wysihtml5-dropdown-color>li>.wysihtml5-tabs {
+    padding: 0;
+}
+
+.wysihtml5-dropdown-color>li>.wysihtml5-tabs>ul>li {
+    line-height: 2rem;
+}
+
+.wysihtml5-dropdown-color li a {
+    position: relative;
+    display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: 1;
+    margin: 0;
+}
+
+.wysihtml5-dropdown-color li a:hover {
+    cursor: pointer;
+    outline: 1px solid #000;
+    outline-offset: -1px;
+    z-index: 2;
+}
+
+.wysihtml5-dropdown-color li .wysihtml5-command-active:after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 5px;
+    height: 10px;
+    top: 48%;
+    right: 14px;
+    border: solid 3px #ccc;
+    border-left: 0;
+    border-top: 0;
+    -webkit-transform: translateY(-50%) rotate(45deg);
+    -ms-transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+
+/* Dialog content
+   ========================================================================== */
+
+body.wysihtml5-dialog-opened {
+    overflow: hidden;
+    width: 100%;
+}
+
+body.wysihtml5-dialog-opened .wysihtml5-toolbar-buttons {
+    pointer-events: none;
+}
+
+[data-wysihtml5-dialog] {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(222, 222, 222, .85);
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+[data-wysihtml5-dialog].opened {
+    opacity: 1;
+    visibility: visible;
+}
+
+[data-wysihtml5-dialog]>.wysihtml5-dialog {
+    padding: 1em 1em .8em;
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    background-color: #fafafa;
+    max-height: 90%;
+    width: 600px;
+    overflow-y: auto;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    font-size: .96em;
+    -webkit-transform: translate(-50%, 100%);
+    -ms-transform: translate(-50%, 100%);
+    transform: translate(-50%, 100%);
+    -webkit-filter: none;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+[data-wysihtml5-dialog].opened>.wysihtml5-dialog {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+@media (min-width: 564px) {
+    [data-wysihtml5-dialog]>.wysihtml5-dialog {
+        padding: 26px 30px 20px;
+    }
+}
+
+.sourcecode>.wysihtml5-dialog {
+    width: 1200px;
+    max-width: 94%;
+}
+
+@media (max-width: 500px) {
+    [data-wysihtml5-dialog]>.wysihtml5-dialog {
+        width: 95%;
+        font-size: .9em;
+    }
+}
+
+[data-wysihtml5-dialog].out>.wysihtml5-dialog {
+    -webkit-animation: topout .5s;
+    animation: topout .5s;
+}
+
+.wysihtml5-dialog-title>* {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.wysihtml5-image-link {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 768px) {
+    .wysihtml5-image-link {
+        display: none;
+    }
+}
+
+.wysihtml5-dialog label {
+    margin-bottom: .2rem;
+}
+
+[data-wysihtml5-dialog]>.wysihtml5-dialog input,
+[data-wysihtml5-dialog]>.wysihtml5-dialog p {
+    margin: 0 0 .4rem;
+}
+
+[data-wysihtml5-dialog]>.wysihtml5-dialog footer {
+    text-align: right;
+}
+
+[data-wysihtml5-dialog]>.wysihtml5-dialog footer .wysihtml5-btn {
+    margin: 1rem 0 0 .5rem;
+}
+
+[data-wysihtml5-dialog="createTable"]>.wysihtml5-dialog {
+    width: 350px;
+    max-width: 85%;
+}
+
+.wysihtml5-dialog .wysihtml5-table-cell>label {
+    display: inline-block;
+    width: 35%;
+}
+
+[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: .4;
+}
+
+.wysihtml5-dialog ::-webkit-input-placeholder {
+    color: #d1d1d1;
+}
+
+.wysihtml5-dialog :-moz-placeholder {
+    color: #d1d1d1;
+}
+
+.wysihtml5-dialog :-ms-input-placeholder {
+    color: #d1d1d1;
+}
+
+.wysihtml5-dialog input:not([type="checkbox"]):not([type="radio"]),
+.wysihtml5-dialog textarea:not(.wysihtml5-textarea) {
+    margin: 0 0 .5em;
+    outline: 0;
+    width: 100%;
+    tap-highlight-color: rgba(255, 255, 255, 0);
+    font-size: 1rem;
+    font-weight: 400;
+    padding: .4em .4em;
+    line-height: 1.32857143;
+    background: #FFF;
+    border: 1px solid rgba(34, 36, 38, .15);
+    color: rgba(0, 0, 0, .87);
+    border-radius: .1em;
+    -webkit-box-shadow: 0 0 0 0 transparent inset;
+    box-shadow: 0 0 0 0 transparent inset;
+    display: block;
+    -webkit-transition: all .6s;
+    transition: all .6s;
+}
+
+@media (min-width: 564px) {
+    .wysihtml5-dialog input:not([type="checkbox"]):not([type="radio"]),
+    .wysihtml5-dialog textarea {
+        padding: .5em .8em;
+    }
+}
+
+.wysihtml5-dialog input:not([type=checkbox]):not([type=radio]):focus,
+.wysihtml5-dialog textarea:focus:not([readonly]) {
+    border-color: #26a69a;
+}
+
+[data-wysihtml5-dialog]>.wysihtml5-dialog input[type=number] {
+    width: 60%;
+    display: inline-block;
+}
+
+.wysihtml5-dialog .wysihtml5-image-dimensions {
+    margin-bottom: .5em;
+}
+
+.wysihtml5-dialog .wysihtml5-image-dimensions label {
+    display: inline-block;
+    margin-right: 1.5em;
+}
+
+[dir="rtl"] .wysihtml5-dialog .wysihtml5-image-dimensions label {
+    margin: 0 0 0 1.5em;
+}
+
+[data-wysihtml5-dialog]>.wysihtml5-dialog .wysihtml5-image-dimensions input {
+    width: 27%;
+    display: inline-block;
+    margin-left: .2em;
+    margin-right: .2em;
+}
+
+@media (max-width: 360px) {
+    .wysihtml5-dialog-title {
+        display: none;
+    }
+    [data-wysihtml5-dialog]>.wysihtml5-dialog .wysihtml5-image-dimensions input {
+        width: 60px;
+    }
+}
+
+.wysihtml5-dialog .wysihtml5-image-dimension-opt {
+    width: 6%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.wysihtml5-dialog .labeled {
+    display: block;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 1.5rem .5rem 0;
+    font-size: 1rem;
+}
+
+[dir="rtl"] .wysihtml5-dialog .labeled {
+    margin: 0 0 .5rem 1.5rem;
+}
+
+.wysihtml5-dialog .labeled input[type=radio],
+.wysihtml5-dialog .labeled input[type=checkbox] {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    z-index: 2;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+[dir="rtl"] .wysihtml5-dialog .labeled input[type=radio],
+[dir="rtl"] .wysihtml5-dialog .labeled input[type=checkbox] {
+    right: 0;
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]+label,
+.wysihtml5-dialog .labeled input[type="checkbox"]+label {
+    padding-left: 24px;
+}
+
+[dir="rtl"] .wysihtml5-dialog .labeled input[type="radio"]+label,
+[dir="rtl"] .wysihtml5-dialog .labeled input[type="checkbox"]+label {
+    padding-right: 24px;
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]+label:before,
+.wysihtml5-dialog .labeled input[type="radio"]+label:after,
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:before,
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+}
+
+[dir="rtl"] .wysihtml5-dialog .labeled input[type="radio"]+label:before,
+[dir="rtl"] .wysihtml5-dialog .labeled input[type="radio"]+label:after,
+[dir="rtl"] .wysihtml5-dialog .labeled input[type="checkbox"]+label:before,
+[dir="rtl"] .wysihtml5-dialog .labeled input[type="checkbox"]+label:after {
+    right: 0;
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]+label:before,
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:before {
+    border: 1px solid #cfd9db;
+    background: #fff;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .08);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .08);
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]+label:before,
+.wysihtml5-dialog .labeled input[type="radio"]+label:after {
+    border-radius: 50%;
+}
+
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:before,
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:after {
+    border-radius: .25em;
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]+label:after,
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:after {
+    background-color: #26a69a;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+    display: none;
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]+label:after {
+    content: '\eacb';
+    color: #fff;
+}
+
+.wysihtml5-dialog .labeled input[type="checkbox"]+label:after {
+    content: '\002713';
+    color: #fff;
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]:focus+label:before,
+.wysihtml5-dialog .labeled input[type="checkbox"]:focus+label:before {
+    -webkit-box-shadow: 0 0 5px rgba(44, 151, 222, .6);
+    box-shadow: 0 0 5px rgba(44, 151, 222, .6);
+}
+
+.wysihtml5-dialog .labeled input[type="radio"]:checked+label:after,
+.wysihtml5-dialog .labeled input[type="checkbox"]:checked+label:after {
+    display: block;
+}
+
+.wysihtml5-dialog .wysihtml5-selectbox {
+    position: relative;
+}
+
+.wysihtml5-dialog .wysihtml5-selectbox:before {
+    z-index: 1;
+    position: absolute;
+    right: .6rem;
+    top: 40%;
+    content: "";
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #222222;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.wysihtml5-dialog input[type=number]::-webkit-outer-spin-button,
+.wysihtml5-dialog input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.wysihtml5-dialog input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.wysihtml5-dialog .wysihtml5-selectbox select {
+    width: 100%;
+    outline: none;
+    display: inline-block;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid rgba(34, 36, 38, .15);
+    font-size: 1rem;
+    font-weight: 400;
+    padding: .5rem .8rem;
+    line-height: 1.32857143;
+    color: rgba(0, 0, 0, .6);
+    border-radius: .1rem;
+    margin: 0 0 .5em;
+    background-color: #fff;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.wysihtml5-dialog .selectbox select:focus {
+    outline: none;
+}
+
+.wysihtml5-dialog .wysihtml5-selectbox select::-ms-expand {
+    display: none;
+}
+
+.wysihtml5-dialog .loading:before {
+    content: '';
+    position: absolute;
+    z-index: 11111;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    border-top-color: #26a69a;
+    -webkit-animation: loading .6s infinite linear;
+    animation: loading .6s infinite linear;
+}
+
+.loading>.wysihtml5-uploader {
+    opacity: .3;
+}
+
+.wysihtml5-uploader {
+    display: block;
+    position: relative;
+    padding: 5em 2.2em;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #eee;
+    overflow: hidden;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.wysihtml5-uploader input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.wysihtml5-uploader p {
+    color: #ccc;
+}
+
+.wysihtml5-uploader-icon {
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    width: 120px;
+    height: 104px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 6px solid;
+    display: inline-block;
+    color: #ddd;
+}
+
+.wysihtml5-uploader-icon:after,
+.wysihtml5-uploader-icon:before {
+    content: '';
+    pointer-events: none;
+}
+
+.wysihtml5-uploader-icon:after {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    -webkit-box-shadow: inset 0 0 0 128px;
+    box-shadow: inset 0 0 0 128px;
+    top: 20px;
+    right: 20px;
+}
+
+.wysihtml5-uploader-icon:before {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: -8px;
+    top: 56px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-box-shadow: inset 0 0 0 128px, 40px -24px 0 0;
+    box-shadow: inset 0 0 0 128px, 40px -24px 0 0;
+}
+
+.wysihtml5-image-box {
+    position: relative;
+}
+
+.wysihtml5-image-box span {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    margin-top: -11px;
+    margin-left: -18px;
+    line-height: 1;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 3px;
+    color: #fff;
+    padding: 7px 10px;
+    cursor: pointer;
+    font-size: .8em;
+}
+
+
+/* Tabs
+   ========================================================================== */
+
+.wysihtml5-tabs {
+    width: 100%;
+}
+
+.wysihtml5-tabs-tab {
+    position: relative;
+    margin: 0;
+    padding-bottom: 2px;
+}
+
+.wysihtml5-tabs-tab:before,
+.wysihtml5-tabs-tab:after {
+    display: table;
+    content: '';
+}
+
+.wysihtml5-tabs-tab:after {
+    clear: both;
+}
+
+.wysihtml5-tabs-tab li {
+    float: left;
+    padding: 0 0 .4em;
+    text-align: center;
+    cursor: pointer;
+    font-size: .86rem;
+}
+
+.wysihtml5-tabs-tab li.active {
+    font-weight: bold;
+}
+
+.wysihtml5-tabs-tab-two li {
+    width: 50%;
+}
+
+.wysihtml5-tabs-tab-three li {
+    width: 33.333333%;
+}
+
+li.wysihtml5-tabs-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    height: 2px;
+    background-color: #2196f3;
+    -webkit-transition: .45s ease-in-out;
+    transition: .45s ease-in-out;
+}
+
+.wysihtml5-tabs-contents>* {
+    position: relative;
+    display: none;
+    padding: 1em 0 0;
+    opacity: 0;
+}
+
+.wysihtml5-dropdown-color .wysihtml5-tabs-contents>* {
+    padding: 0;
+}
+
+.wysihtml5-dropdown-color .wysihtml5-tabs-tab {
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    background-color: #fafafa;
+}
+
+.wysihtml5-tabs-contents>*.active {
+    display: block;
+    opacity: 1;
+    -webkit-animation: fadeIn .5s linear;
+    animation: fadeIn .5s linear;
+}
+
+
+/* filemanager
+   ========================================================================== */
+
+.filemanager-list {
+    margin: 0;
+    padding: 0;
+    min-height: 200px;
+    *zoom: 1;
+}
+
+.filemanager-list:before,
+.filemanager-list:after {
+    display: table;
+    content: '';
+}
+
+.filemanager-list:after {
+    clear: both;
+}
+
+.filemanager-list img {
+    display: block;
+    float: left;
+    max-width: 20%;
+    height: auto;
+    cursor: pointer;
+}
+
+.pager {
+    position: relative;
+    margin: 0;
+}
+
+.pager-prev,
+.pager-next {
+    width: 1.6rem;
+    height: 1.6rem;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.pager-next {
+    float: right;
+}
+
+.pager-prev {
+    float: left;
+}
+
+.pager-pagenum {
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.image-preview {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+.image-preview.active {
+    display: block;
+}
+
+.image-preview .action {
+    margin: 10px 0;
+    text-align: center;
+    display: block;
+}
+
+.image-preview .action .wysihtml5-btn {
+    margin: 1rem 0 0 .5rem;
+}
+
+
+/* Tooltip
+   ========================================================================== */
+
+.wysihtml5-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.wysihtml5-tooltip:before {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1010;
+    font-size: 12px;
+    line-height: 1;
+    margin-top: .5rem;
+    left: 50%;
+    top: 75%;
+    content: attr(aria-label);
+    background: #212121;
+    border-radius: 2px;
+    color: #fafafa;
+    padding: 4px 5px;
+    white-space: nowrap;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    pointer-events: none;
+}
+
+[data-wysihtml5-dialog] .wysihtml5-tooltip:before {
+    font-size: 11px;
+}
+
+.wysihtml5-toolbar:not(.wysihtml5-commands-disabled) .wysihtml5-tooltip:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Text Counter
+   ========================================================================== */
+
+.wysihtml5-text-counter {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 14px;
+    line-height: 2;
+    opacity: 0.7;
+    color: rgba(0, 0, 0, .9);
+}
+
+.wysihtml5-text-counter span {
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    padding: 0 8px;
+    border: 1px solid rgba(0, 0, 0, .15);
+}
+
+.wysihtml5-text-counter span.wysihtml5-limiter-error {
+    background-color: rgb(229, 58, 58);
+    color: #fff;
+    -webkit-animation: blink 1s step-end infinite;
+    animation: blink 1s step-end infinite;
+}
+
+
+/* Themes
+   ========================================================================== */
+
+.wysihtml5-toolbar-color-cool>.wysihtml5-toolbar-buttons {
+    background-color: rgba(223, 226, 218, .9);
+}
+
+.wysihtml5-toolbar-color-zippy>.wysihtml5-toolbar-buttons {
+    background-color: rgba(234, 171, 0, .9);
+}
+
+.wysihtml5-toolbar-textarea.wysihtml5-toolbar-color-dark>.wysihtml5-toolbar-buttons:not(.sticky),
+.wysihtml5-toolbar-textarea.wysihtml5-toolbar-color-cool>.wysihtml5-toolbar-buttons:not(.sticky),
+.wysihtml5-toolbar-textarea.wysihtml5-toolbar-color-zippy>.wysihtml5-toolbar-buttons:not(.sticky),
+.wysihtml5-toolbar-textarea.wysihtml5-toolbar-color-pop>.wysihtml5-toolbar-buttons:not(.sticky) {
+    box-shadow: none;
+}
+
+.wysihtml5-toolbar-color-pop>.wysihtml5-toolbar-buttons {
+    color: #fff;
+    background-color: rgba(1, 138, 234, .9);
+}
+
+.wysihtml5-toolbar-color-pop>.wysihtml5-toolbar-buttons>.wysihtml5-btn {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+}
+
+.wysihtml5-toolbar-color-dark>.wysihtml5-toolbar-buttons {
+    color: #fff;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.wysihtml5-toolbar-color-pop .wysihtml5-dropdown .wysihtml5-btn:after,
+.wysihtml5-toolbar-color-dark .wysihtml5-dropdown .wysihtml5-btn:after {
+    border-top-color: #fff;
+}
+
+.wysihtml5-toolbar-textarea.wysihtml5-toolbar-color-dark>.wysihtml5-toolbar-buttons {
+    color: #ccc;
+    background-color: rgba(0, 0, 0, .82);
+}
+
+.wysihtml5-toolbar-color-dark>.wysihtml5-toolbar-buttons>.wysihtml5-btn {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+}
+
+.wysihtml5-toolbar-color-dark .wysihtml5-dropdown .btn:after {
+    border-top-color: #ccc;
+}
+
+.wysihtml5-action-active,
+.btn.wysihtml5-command-active,
+.wysihtml5-dropdown-content li .wysihtml5-command-active {
+    -webkit-box-shadow: 400px 0 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 3px rgba(0, 0, 0, 0.07);
+    box-shadow: 400px 0 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+.wysiwyg-tmp-selected-cell {
+    outline: 1px solid #86daf2;
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.wysihtml5-error {
+    display: block;
+    color: red;
+    -webkit-animation: fadeIn .5s both;
+    animation: fadeIn .5s both;
+}
+
+.block {
+    display: block;
+}
+
+
+/* Animations
+   ========================================================================== */
+
+@-webkitkeyframes blink {
+    75% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink {
+    75% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes loading {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes loading {
+    to {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

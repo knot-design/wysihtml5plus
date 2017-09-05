@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wysihtml5+ Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+
+    <section>
+        <h1>wysihtml5+ Documentation</h1>
+        <p>It’s an open source rich text editor forked from <a href="http://xing.github.com/wysihtml5/">XING wysihtml5</a>. THX!</p>
+        <p><a href="https://knot-design.jp/wysihtml5plus/" class="btn-example"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</a></p>
+        <h2>Features</h2>
+        <ul>
+            <li>Easy to use.</li>
+            <li>Fast and lightweight.</li>
+            <li>Auto-linking of urls as-you-type.</li>
+            <li>Generates valid and semantic HTML5 markup.</li>
+            <li>Various languages.</li>
+            <li>Image Uploader/Manager included.</li>
+            <li>Speech-input for Chrome.</li>
+        </ul>
+        <ol>
+            <li>
+                <h3>Include CSS and scripts</h3>
+                <pre><code class="language-markup">&lt;!-- CSS --&gt;
+&lt;link href="/path-to-wysihtml5plus/dist/wysihtml5plus.min.css" rel="stylesheet"  type="text/css"&gt;
+&lt;!-- Library --&gt;
+&lt;script src="/path-to-wysihtml5plus/dist/wysihtml5plus.min.js"&gt;&lt;/script&gt;
+&lt;!-- wysihtml5 parser rules --&gt;
+&lt;script src="/path-to-wysihtml5plus/parser_rules/advanced.js"&gt;&lt;/script&gt;
+</code></pre>
+            </li>
+            <li>
+                <h3>Create a textarea</h3>
+                <pre><code class="language-markup">&lt;textarea id="wysiwyg-area" placeholder="Enter your text ..."&gt;&lt;/textarea&gt;</code></pre>
+            </li>
+            <li>
+                <h3>Initialize</h3>
+                <pre><code class="language-javascript">var editor = new wysihtml5.Editor("wysiwyg-area", { // id of element
+  toolbar:  {
+    button: ['bold', 'italic', 'block', 'fontSize', 'colors', 'ul', 'ol', 'align', 'link', 'unlink', 'undo', 'redo']
+  },
+  parserRules:  wysihtml5ParserRules // defined in parser rules set
+});</code></pre>
+            </li>
+        </ol>
+    </section>
+
+    <script src="js/examples.js"></script>
+
+</body>
+
+</html>

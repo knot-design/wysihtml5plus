@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Ajax - Sending data | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="../dist/wysihtml5plus.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+
+    <section>
+        <h1>Using Ajax Example <small class="wysiwyg-font-size-small">Sending data</small></h1>
+        <p><small>It work on IE10+ and modern browser</small></p>
+        <div class="tabs">
+            <ul>
+                <li>Demo</li>
+                <li>Source</li>
+            </ul>
+            <form method="post" action="php/post.php" class="tab-content">
+                <textarea id="editable" name="data">
+          <h2>Heading</h2>
+           <p>Lorem ipsum dolor sit amet, has ponderum platonem an, no eam ridens ancillae. Vix in sale sententiae. At solet inermis repudiandae quo, facete facilis te cum, pro eu magna choro sanctus. Sed summo appetere ut. Mel ne exerci legimus, pri option veritus intellegam ne.</p>
+           <p>Liber regione tincidunt ea eos, pro an veniam causae sadipscing. Te dicam dolore inciderint duo, probo quaestio percipitur no cum. Te atqui putent forensibus vim, eum te virtute sadipscing, ancillae suavitate interesset at sea. Iusto volutpat mel ad, fastidii delicata ad eum. Id nam movet praesent. Nostro laoreet cu sea, est omittam molestie suavitate at.</p>
+           <p>In duo laudem moderatius. An mei labore possim discere. Falli dicant accusata per eu, te per quodsi pertinax definitiones. In ridens impetus eam, te quodsi bonorum voluptua mei.</p>
+       </textarea>
+                <p id="buttons">
+                    <button type="submit" class="btn-example primary">Submit</button>
+                </p>
+            </form>
+
+            <div data-wysihtml5-dialog="formdata">
+                <div class="wysihtml5-dialog">
+                    <div class="content">
+                    </div>
+                    <div id="output" class="wysiwyg-text-align-center"></div>
+                    <footer>
+                        <button type="button" data-wysihtml5-dialog-action="cancel" class="wysihtml5-btn wysihtml5-btn-cancel">Close</button>
+                    </footer>
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <h3>Markup</h3>
+                <pre><code class="language-markup">&lt;form method="post" action="php/post.php" class="tab-content"&gt;
+&lt;textarea id="editable" name="data"&gt;&lt;/textarea&gt;
+&lt;button type="reset"&gt;Reset&lt;/button&gt;
+&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div id="output"&gt;&lt;/div&gt;
+              
+&lt;script&gt;
+    var textarea = document.getElementById('editable'),
+        form = textarea.form,
+        output = document.getElementById("output");
+
+        form.addEventListener('submit', function(e) {
+            var data = new FormData(form),
+                xhr = new XMLHttpRequest();
+            data.append('data', editor.getValue());
+            xhr.open(form.method, form.action, true);
+            xhr.setRequestHeader("X-Requested-With", 'XMLHttpRequest');
+            xhr.onload = function(re) {
+                var response = JSON.parse(xhr.responseText);
+                if (xhr.status == 200 &amp;&amp; response.message) {
+                    output.innerHTML = '&lt;p&gt;' + response.message + '&lt;/p&gt;';
+                } else {
+                    output.innerHTML = '&lt;p class="wysihtml5-error"&gt;Error: occurred when trying to send your data.&lt;/p&gt;';
+                }
+            };
+            xhr.send(data);
+            e.preventDefault();
+        });
+&lt;/script&gt;</code></pre>
+
+                <h3>Server side: post.php</h3>
+                <pre><code class="language-php">&lt;?php
+function outputJSON($message) {
+    header('Content-Type: application/json');
+    die(json_encode(array(
+        'message' => $message
+    )));
+}
+$message = false;
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) &amp;&amp; strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    $data = isset($_POST['data']) &amp;&amp; $_POST['data'] != '' ? $_POST['data'] : '';
+    if(data) {
+        $message = 'successfully sent';
+    }
+}
+outputJSON($message);
+?&gt;</code></pre>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/examples.js"></script>
+    <script src="../dist/wysihtml5plus.min.js"></script>
+    <script src="../parser_rules/advanced_and_extended.js"></script>
+    <script>
+        var textarea = document.getElementById('editable'),
+            form = textarea.form,
+            dialog = document.querySelector('[data-wysihtml5-dialog="formdata"]'),
+            output = document.getElementById("output"),
+            refresh = function() {
+                output.innerHTML = '<i class="fa fa-spinner fa-spin fa-fw"></i><br>Sending....';
+            },
+            editor = new wysihtml5.Editor(textarea, {
+                toolbar: {
+                    button: ['bold', 'italic', 'block', 'align', 'link', 'unlink', 'table', 'undo', 'redo', 'html']
+                },
+                contentEditableMode: true,
+                parserRules: wysihtml5ParserRules
+            });
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (typeof window.FormData === "undefined") {
+                output.innerHTML = '<p class="wysihtml5-error">Sorry! It does not work on IE9-.</p>';
+            } else {
+                var data = new FormData(form),
+                    xhr = new XMLHttpRequest();
+                data.append('data', editor.getValue());
+                xhr.open(form.method, form.action, true);
+                xhr.setRequestHeader("X-Requested-With", 'XMLHttpRequest');
+                xhr.onload = function() {
+                    var response = JSON.parse(xhr.responseText);
+                    if (xhr.status == 200 && response.message) {
+                        output.innerHTML = '<p>' + response.message + '</p>';
+                    } else {
+                        output.innerHTML = '<p class="wysihtml5-error">Error: occurred when trying to send your data.</p>';
+                    }
+                };
+                xhr.send(data);
+            }
+            dialog.querySelector('.content').innerHTML = '<div class="wysihtml5-dialog-title"><h3>Sending data</h3></div>' + editor.getValue();
+            dialog.className = 'opened';
+            window.addEventListener('click', function(e) {
+                var parent = e.target.offsetParent
+                if (!parent || parent && parent.className !== 'wysihtml5-dialog' || e.target.nodeName === 'BUTTON') {
+                    dialog.className = '';
+                    refresh();
+                }
+            });
+        });
+        refresh();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+    <section>
+        <h1>Security</h1>
+            
+        <blockquote>
+        <h2>Client Side</h2>
+            
+        <p><strong>Scenario:</strong> Content that is copy &amp; pasted into the editor could contain scripts or styles that have an immediate affect on page functionality. Such content could even perform cookie stealing while the user is working with the editor.</p>
+        <p><strong>Solution:</strong> wysihtml5 relies on a three-layered security model:</p>
+        <ol>
+            <li><strong>Browser:</strong> Modern browsers already sanitize content before inserting it into rich text editors. Unfortunately Internet Explorer isn’t good at that.</li>
+            <li><strong>iframe:</strong> wysihtml5 is always rendered in a sandbox iframe. The iframe disallows javascript from being executed in IE (by using its proprietary <a href="http://msdn.microsoft.com/en-us/library/ie/ms534622(v=vs.85).aspx">security attribute</a>).<br>In non-IE browsers sensitive variables (such as document.cookie, window.parent, localStorage etc.) are protected via setters/getters</li>
+            <li><strong>HTML5 Parser:</strong> The <a href="../parser_rules/">default HTML5 parser rules</a> strip out potentially malicious HTML (such as &lt;script&gt;, &lt;iframe&gt;, meta redirects, …)</li>
+        </ol>
+        
+        <h2>Server Side</h2>
+        <p><strong>Scenario:</strong> An attacker can always omit wysihtml5’s client side security barrier and post malicious HTML to the server.</p>
+        <p><strong>Solution:</strong> A HTML sanitizer needs to be used on the server unless wysihtml5 is used in a trusted environment (eg. CMS where only people with permissions can interact with wysihtml5).</p>
+        <p>Here’s an incomplete list of proven HTML sanitizers:</p>
+        
+        <ul>
+            <li>Perl: <a href="https://github.com/xing/html5-sanitizer">HTML5::Sanitizer</a> (uses the same parser rule definitions as wysihtml5)</li>
+            <li>Ruby: <a href="https://github.com/rgrove/sanitize/">sanitize</a></li>
+            <li>Python: <a href="https://github.com/jsocol/bleach">Bleach</a></li>
+            <li>PHP: <a href="http://htmlpurifier.org/">HTML Purifier</a></li>
+            <li>.NET: <a href="http://refactormycode.com/codes/333-sanitize-html">sanitize</a></li>
+            <li>Java: <a href="http://code.google.com/p/owasp-java-html-sanitizer/">owasp-java-html-sanitizer</a><br>
+            <strong>Please note: Only use html sanitizers that do whitelisting instead of blacklisting</strong></li>
+        </ul>
+        <footer><p>from <a href="https://github.com/xing/wysihtml5/wiki/Security">https://github.com/xing/wysihtml5/wiki/Security</a></p></footer>
+        </blockquote>
+
+    </section>
+
+    <script src="js/examples.js"></script>
+</body>
+
+</html>

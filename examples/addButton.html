@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Button | wysihtml5+</title>
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="../dist/wysihtml5plus.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+
+    <section>
+        <h1>Add Button</h1>
+        <div class="tabs">
+            <ul>
+                <li>Demo</li>
+                <li>Source</li>
+            </ul>
+            <div class="tab-content">
+
+                <textarea id="add"></textarea>
+            </div>
+            <div class="tab-content">
+                <pre><code class="language-javascript">var insertTemplate = {
+        tweet: function() {
+            return '&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;Photo of the Day: People of the Sun &lt;a href="https://t.co/hh4evH7FY6"&gt;https://t.co/hh4evH7FY6&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/photography?src=hash"&gt;#photography&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/pod?src=hash"&gt;#pod&lt;/a&gt;&lt;/p&gt;&amp;mdash; National Geographic (@NatGeo) &lt;a href="https://twitter.com/NatGeo/status/886325768393019392"&gt;July 15, 2017&lt;/a&gt;&lt;/blockquote&gt;';
+        }
+    },
+    injectScript = function(url, el) {
+        var owner = el.ownerDocument,
+            script = this.document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.onLoad = function() {};
+        script.src = this.document.location.protocol + url;
+        owner.getElementsByTagName("head")[0].appendChild(script);
+    },
+    codeDialog = function () {
+        var classes = {
+                HTML: 'language-markup',
+                CSS: 'language-css',
+                JavaScript: 'language-js'
+            },
+            content = '&lt;div class="wysihtml5-dialog-title"&gt;&lt;h3&gt;Insert code&lt;/h3&gt;&lt;/div&gt;' +
+            '&lt;textarea data-wysihtml5-dialog-field="code"&gt;&lt;/textarea&gt;' +
+            '&lt;div class="wysihtml5-selectbox"&gt;&lt;select data-wysihtml5-dialog-field="className"&gt;&lt;option value=""&gt; language &lt;/option&gt;';
+        Object.keys(classes).forEach(function(key) {
+            content += '&lt;option value="' + classes[key] + '"&gt;' + key + '&lt;/option&gt;';
+        });
+        content += '&lt;/select&gt;&lt;/div&gt;';
+        return content;
+    };
+
+    var editor = new wysihtml5.Editor('add', {
+        toolbar: {
+            button: ['tweet', 'map', 'emoji', 'code']
+        },
+        addButtons: {
+            add: { // Button name
+                title: 'add',
+                // Add dropdown
+                value: 'Insert text',
+                command: 'insertText',
+            },
+            emoji: {
+                title: 'Emoji',
+                icon: 'fa-smile-o',
+                // Add dropdown
+                options: {
+                    '😀': '😀',
+                    '😍': '😍',
+                    '😋': '😋',
+                    '😎': '😎',
+                    '😵': '😵',
+                    '😡': '😡',
+                    '💩': '💩'
+                },
+                command: 'insertText',
+            },
+            // with Function
+            tweet: {
+                title: 'Tweet',
+                icon: 'fa-twitter',
+                value: 'tweet', // function name: insertTemplate.tweet()
+                command: 'insertHTML'
+            },
+            // Original command
+            map: { // Button name
+                title: 'Insert Map',
+                icon: 'fa-map-marker',
+                // Add dialog
+                dialog: '&lt;input type="text" data-wysihtml5-dialog-field="address" placeholder="Please type your address"&gt;',
+                command: 'insertMap', // create command
+            },
+            code: {
+                title: 'Insert Code',
+                icon: 'fa-file-code-o',
+                dialog: codeDialog(),
+                command: 'formatCode'
+            }
+        },
+        parserRules: wysihtml5ParserRules
+    });
+
+    // when the user invokes a command.insertHTML action
+    editor.on('insert:composer', function(ev) {
+        if (ev.handler === 'tweet') {
+            if (typeof(window.twttr) === "undefined") {
+                injectScript("//platform.twitter.com/widgets.js", this.composer.element);
+                return;
+            }
+            window.twttr.widgets.load();
+        }
+    });
+    
+    // Original event
+    editor.on('insertMap', initMap);
+
+    function initMap(res) {
+        var latlng = new google.maps.LatLng(res.lat, res.lng),
+            map = new google.maps.Map(res.element, {
+                zoom: 14,
+                center: latlng
+            }),
+            marker = new google.maps.Marker({
+                map: map,
+                position: latlng
+            });
+    }
+
+    // create command
+    wysihtml5.commands.insertMap = {
+        exec: function(composer, command, value) {
+        if (!value.address) {
+            return;
+        }
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            'address': value.address
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var wrap = document.createElement('div'),
+                        selectedNode = composer.selection.getSelectedNode();
+                    wrap.className = 'gmap';
+                    if (selectedNode &amp;&amp; selectedNode !== composer.element) {
+                        selectedNode.parentNode.appendChild(wrap);
+                    } else {
+                        selectedNode.appendChild(wrap);
+                    }
+                    // Original event
+                    composer.parent.fire("insertMap", {
+                        element: wrap,
+                        lat: results[0].geometry.location.lat(),
+                        lng: results[0].geometry.location.lng()
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        },
+        state: function() {
+            return false;
+        }
+    };</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/examples.js"></script>
+    <script src="../dist/wysihtml5plus.min.js"></script>
+    <script src="../parser_rules/advanced_and_extended.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAl7QXUXAImA7HJTTlHnOYSuyEmAWlFeg" async defer></script>
+    <script class="async">
+        var insertTemplate = {
+                tweet: function() {
+                    return '<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Photo of the Day: People of the Sun <a href="https://t.co/hh4evH7FY6">https://t.co/hh4evH7FY6</a> <a href="https://twitter.com/hashtag/photography?src=hash">#photography</a> <a href="https://twitter.com/hashtag/pod?src=hash">#pod</a></p>&mdash; National Geographic (@NatGeo) <a href="https://twitter.com/NatGeo/status/886325768393019392">July 15, 2017</a></blockquote>'
+                }
+            },
+            injectScript = function(url, el) {
+                var owner = el.ownerDocument,
+                    script = this.document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onLoad = function() {};
+                script.src = this.document.location.protocol + url;
+                owner.getElementsByTagName("head")[0].appendChild(script);
+            },
+            codeDialog = function() {
+                var classes = {
+                        HTML: 'language-markup',
+                        CSS: 'language-css',
+                        JavaScript: 'language-js'
+                    },
+                    content = '<div class="wysihtml5-dialog-title"><h3>Insert code</h3></div>' +
+                    '<textarea data-wysihtml5-dialog-field="code"></textarea>' +
+                    '<div class="wysihtml5-selectbox"><select data-wysihtml5-dialog-field="className"><option value=""> language </option>';
+                Object.keys(classes).forEach(function(key) {
+                    content += '<option value="' + classes[key] + '">' + key + '</option>';
+                });
+                content += '</select></div>';
+                return content;
+            },
+            editor = new wysihtml5.Editor('add', {
+                toolbar: {
+                    button: ['add', 'tweet', 'map', 'emoji', 'code', 'undo', 'redo']
+                },
+                addButtons: {
+                    add: {
+                        title: 'Add',
+                        value: 'Insert text',
+                        command: 'insertText'
+                    },
+                    tweet: { // Button name
+                        title: 'Tweet',
+                        icon: 'fa-twitter',
+                        value: 'tweet',
+                        command: 'insertHTML'
+                    },
+                    emoji: { // Button name
+                        title: 'Emoji',
+                        icon: 'fa-smile-o',
+                        // Add dropdown
+                        options: {
+                            '😀': '😀',
+                            '😍': '😍',
+                            '😋': '😋',
+                            '😎': '😎',
+                            '😵': '😵',
+                            '😡': '😡',
+                            '💩': '💩'
+                        },
+                        command: 'insertText',
+                    },
+                    code: {
+                        title: 'Insert Code',
+                        icon: 'fa-file-code-o',
+                        dialog: codeDialog(),
+                        command: 'formatCode'
+                    },
+                    map: { // Button name
+                        title: 'Insert Map',
+                        icon: 'fa-map-marker',
+                        // Add modal dialog content
+                        dialog: '<input type="text" data-wysihtml5-dialog-field="address" placeholder="Please type your address">',
+                        command: 'insertMap', // create command
+                    }
+                },
+                contentEditableMode: true,
+                parserRules: wysihtml5ParserRules
+            });
+        editor.on('insert:composer', function(ev) {
+            if (ev.handler === 'tweet') {
+                if (typeof(window.twttr) === "undefined") {
+                    injectScript("//platform.twitter.com/widgets.js", this.composer.element);
+                    return;
+                }
+                //window.twttr.widgets.load();
+            }
+        });
+        editor.on('insertMap', initMap);
+
+        function initMap(element) {
+            var lat = element.getAttribute('data-lat'),
+                lng = element.getAttribute('data-lng'),
+                latlng = new google.maps.LatLng(lat, lng),
+                map = new google.maps.Map(element, {
+                    zoom: 14,
+                    center: latlng
+                }),
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: latlng
+                });
+        }
+
+        // create command
+        wysihtml5.commands.insertMap = {
+            exec: function(composer, command, value) {
+                if (!value.address) {
+                    return;
+                }
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({
+                    'address': value.address
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var wrap = document.createElement('div'),
+                            selectedNode = composer.selection.getSelectedNode();
+                        wrap.className = 'gmap';
+                        wrap.setAttribute('data-lat', results[0].geometry.location.lat());
+                        wrap.setAttribute('data-lng', results[0].geometry.location.lng());
+                        if (selectedNode && selectedNode !== composer.element) {
+                            selectedNode.parentNode.appendChild(wrap);
+                        } else {
+                            selectedNode.appendChild(wrap);
+                        }
+                        composer.parent.fire("insertMap", wrap);
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            },
+            state: function() {
+                return false;
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>

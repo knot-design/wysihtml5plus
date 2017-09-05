@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Icons | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/dashicons/0.1.0/css/dashicons.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="../dist/wysihtml5plus.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+
+    <section>
+        <h1>Change Icons</h1>
+        <div class="tabs">
+            <ul>
+                <li>Demo</li>
+                <li>Source</li>
+            </ul>
+            <div class="tab-content">
+        <textarea id="typicons" class="e-short">
+          <h2>Typicons</h2>
+          <p><a href="http://www.typicons.com/">http://www.typicons.com/</a></p>
+       </textarea>
+        <textarea id="dashicons" class="e-short">
+          <h2>Dashicons</h2>
+          <p><a href="https://developer.wordpress.org/resource/dashicons/">https://developer.wordpress.org/resource/dashicons/</a></p>
+       </textarea>
+                
+            </div>
+            <div class="tab-content">
+                <pre><code class="language-javascript">var editor = new wysihtml5.Editor('icon', {
+    toolbar: {
+        button: ['italic', 'underline', 'block', 'align', 'lists', 'link', 'unlink', 'img', 'undo', 'redo']
+    },
+    theme: {
+        iconPrefix: '',
+        icons: {
+            italic: 'ti-Italic',
+            underline: 'ti-underline',
+            ul: 'ti-list',
+            ol: 'ti-list-ol',
+            indent: 'ti-shift-right',
+            alignLeft: 'ti-align-left',
+            alignCenter: 'ti-align-center',
+            alignRight: 'ti-align-right',
+            alignJustify: 'ti-align-justify',
+            link: 'ti-link',
+            unlink: 'ti-unlink',
+            image: 'ti-image',
+            undo: 'ti-control-backward',
+            redo: 'ti-control-forward',
+            style: 'ti-paragraph',
+            lock: 'ti-lock',
+            unlock: 'ti-unlock'
+        }
+    },
+    parserRules: wysihtml5ParserRules
+});</code></pre>
+            </div>
+                
+            </div>
+    </section>
+
+    <script src="js/examples.js"></script>
+    <script src="../dist/wysihtml5plus.min.js"></script>
+    <script src="../parser_rules/advanced_and_extended.js"></script>
+    <script class="async">
+        var editor = new wysihtml5.Editor('typicons', {
+            style: false,
+            stylesheets: ['https://fonts.googleapis.com/css?family=Dosis', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', '../dist/wysihtml5+.css', 'css/examples.css'],
+            toolbar: {
+                button: ['italic', 'underline', 'block', 'align', 'lists', 'link', 'unlink', 'img', 'undo', 'redo']
+            },
+            theme: {
+                iconPrefix: '',
+                icons: {
+                    italic: 'ti-Italic',
+                    underline: 'ti-underline',
+                    ul: 'ti-list',
+                    ol: 'ti-list-ol',
+                    indent: 'ti-shift-right',
+                    alignLeft: 'ti-align-left',
+                    alignCenter: 'ti-align-center',
+                    alignRight: 'ti-align-right',
+                    alignJustify: 'ti-align-justify',
+                    link: 'ti-link',
+                    unlink: 'ti-unlink',
+                    image: 'ti-image',
+                    undo: 'ti-control-backward',
+                    redo: 'ti-control-forward',
+                    style: 'ti-paragraph',
+                    lock: 'ti-lock',
+                    unlock: 'ti-unlock'
+                }
+            },
+            contentEditableMode: true,
+            parserRules: wysihtml5ParserRules
+        });
+        var editor = new wysihtml5.Editor('dashicons', {
+            style: false,
+            stylesheets: ['https://fonts.googleapis.com/css?family=Dosis', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', '../dist/wysihtml5+.css', 'css/examples.css'],
+            toolbar: {
+                button: ['bold', 'italic', 'underline', 'align', 'lists', 'link', 'unlink', 'undo', 'redo']
+            },
+            theme: {
+                iconPrefix: 'dashicons',
+                icons: {
+                    bold: 'dashicons-editor-bold',
+                    italic: 'dashicons-editor-italic',
+                    underline: 'dashicons-editor-underline',
+                    ul: 'dashicons-editor-ul',
+                    ol: 'dashicons-editor-ol',
+                    indent: 'dashicons-editor-indent',
+                    alignLeft: 'dashicons-editor-alignleft',
+                    alignCenter: 'dashicons-editor-aligncenter',
+                    alignRight: 'dashicons-editor-alignright',
+                    alignJustify: 'dashicons-editor-justify',
+                    link: 'dashicons-admin-links',
+                    unlink: 'dashicons-editor-unlink',
+                    undo: 'dashicons-undo',
+                    redo: 'dashicons-redo'
+                }
+            },
+            contentEditableMode: true,
+            parserRules: wysihtml5ParserRules
+        });
+    </script>
+
+</body>
+
+</html>

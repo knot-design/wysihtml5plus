@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolbar Buttons | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+</head>
+
+<body>
+
+    <section>
+        <h1>Toolbar Buttons</h1>
+        <table class="bordered hover">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Button</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>command</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   <th rowspan="7">Text Formatting</th>
+                    <td>bold</td>
+                    <td>Generated markup:<br><strong>&lt;strong&gt;text&lt;/strong&gt;</strong></td>
+                    <td>bold</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                    <td>italic</td>
+                    <td>Generated markup:<br><em>&lt;em&gt;text&lt;/em&gt;</em></td>
+                    <td>italic</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                    <td>underline</td>
+                    <td>Generated markup:<br><u>&lt;u&gt;text&lt;/u&gt;</u></td>
+                    <td>underline</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                    <td>strikethorough</td>
+                    <td>Generated markup:<br><del>&lt;del&gt;text&lt;/del&gt;</del></td>
+                    <td>strikethorough</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                    <td>superscript</td>
+                    <td>Generated markup:<br><sup>&lt;sup&gt;text&lt;/sup&gt;</sup></td>
+                    <td>superscript</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                    <td>subscript</td>
+                    <td>Generated markup:<br><sub>&lt;sub&gt;text&lt;/sub&gt;</sub></td>
+                    <td>subscript</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                    <td>inline</td>
+                    <td>Text Formatting drop down list</td>
+                    <td>bold/italic/underline/strikethorough/superscript/subscript</td>
+                    <td>inline</td>
+                </tr>
+                <tr>
+                   <th>Block Formatting</th>
+                    <td>block</td>
+                    <td>Selectable Text Formatting element drop list</td>
+                    <td>h1/h2/h3/h4/h5/h6/p/pre/blockquote</td>
+                    <td>formatBlock/insertBlockQuote</td>
+                </tr>
+                <tr>
+                   <th>Font</th>
+                    <td>fontsize</td>
+                    <td>Generated markup:<br><span class="wysiwyg-font-size-large">&lt;span class="wysiwyg-font-size-large"&gt;text&lt;/span&gt;</span></td>
+                    <td>Ex. large</td>
+                    <td>fontSize</td>
+                </tr>
+                <tr>
+                   <th rowspan="2">Colors</th>
+                    <td>foreColor</td>
+                    <td>Generated markup:<br><span class="wysiwyg-color-red">&lt;span class="wysiwyg-color-red"&gt;text&lt;/span&gt;</span></td>
+                    <td>Ex. red</td>
+                    <td>foreColor</td>
+                </tr>
+                <tr>
+                    <td>colors</td>
+                    <td>Generated markup:<br><span style="color: rgb(97,189,109);">&lt;span style="color: rgb(97,189,109);"&gt;text&lt;/span&gt;</span></td>
+                    <td>Ex. rgb(97,189,109)</td>
+                    <td>foreColorStyle/bgColorStyle</td>
+                </tr>
+                <tr>
+                   <th rowspan="3">Itemize</th>
+                    <td>ul</td>
+                    <td>Generated markup:<br>&lt;ul&gt;&lt;li&gt;text&lt;/li&gt;&lt;/ul&gt;</td>
+                    <td>ul</td>
+                    <td>insertUnorderedList</td>
+                </tr>
+                <tr>
+                    <td>ol</td>
+                    <td>Generated markup:<br>&lt;ol&gt;&lt;li&gt;text&lt;/li&gt;&lt;/ol&gt;</td>
+                    <td>ol</td>
+                    <td>insertOrderedList</td>
+                </tr>
+                <tr>
+                    <td>lists</td>
+                    <td>Drop-down list (ul/ol/indent)</td>
+                    <td>ul/ol/indent</td>
+                    <td>insertOrderedList/insertUnorderedList/indent</td>
+                </tr>
+                <tr>
+                    <th>Alignment</th>
+                    <td>align</td>
+                    <td>Set the text alignment</td>
+                    <td>left/center/right/justify</td>
+                    <td>align</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">Media</th>
+                    <td>img</td>
+                    <td>Generated markup:<br>&lt;img src="http://url.com/foo.jpg" width="100" height="100"&gt;<br>
+                    <br>with caption:<br>
+                    &lt;figure&gt;<br>
+                    &lt;img src="http://url.com/foo.jpg" width="100" height="100"&gt;<br>
+                    &lt;figcaption&gt;caption&lt;/figcaption&gt;<br>
+                    &lt;/figure&gt;</td>
+                    <td>---</td>
+                    <td>insertImage</td>
+                </tr>
+                <tr>
+                    <td>video</td>
+                    <td>Embedded YouTube, Vimeo, Instagram, DailyMotion</td>
+                    <td>---</td>
+                    <td>insertVideo</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">Link</th>
+                    <td>link</td>
+                    <td>Generated markup:<br>&lt;a href="http://url.com/" target="_blank"&gt;text&lt;/a&gt;</td>
+                    <td>---</td>
+                    <td>createLink</td>
+                </tr>
+                <tr>
+                    <td>unlink</td>
+                    <td>Remove link</td>
+                    <td>---</td>
+                    <td>removeLink</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">Other</th>
+                    <td>table</td>
+                    <td>Create table</td>
+                    <td>---</td>
+                    <td>createTable</td>
+                </tr>
+                <tr>
+                    <td>hr</td>
+                    <td>Insert Horizontal Rule<br>Generated markup:<br>&lt;hr&gt;<hr></td>
+                    <td>---</td>
+                    <td>insertHorizontalRule</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">History</th>
+                    <td>undo</td>
+                    <td>Undo histroy</td>
+                    <td>---</td>
+                    <td>undo</td>
+                </tr>
+                <tr>
+                    <td>redo</td>
+                    <td>Redo histroy</td>
+                    <td>---</td>
+                    <td>redo</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">View</th>
+                    <td>html</td>
+                    <td>Code view</td>
+                    <td>---</td>
+                    <td>change_view/show_code</td>
+                </tr>
+                <tr>
+                    <td>fullscreen</td>
+                    <td>Fullscreen view</td>
+                    <td>---</td>
+                    <td>---</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script src="js/examples.js"></script>
+
+</body>
+
+</html>

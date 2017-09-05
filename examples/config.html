@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+
+</head>
+
+<body>
+
+    <section>
+        <h1>Configuration</h1>
+                    <pre><code class="language-javascript">// Default
+var config = {
+    // Give the editor a name, the name will also be set as class name on the iframe and on the iframe's body
+    name: undef,
+    // Whether the editor should look like the textarea (by adopting styles)
+    style: true,
+    // Id of the toolbar element, pass falsey value if you don't want any toolbar logic
+    toolbar: {
+        groupBlock: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote', 'pre'],
+        groupInline: ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript'],
+        button: ['block', 'inline', 'fontSize', 'colors', 'lists', 'align', 'link', 'unlink', 'img', 'video', 'table', 'hr', 'undo', 'redo']
+    },
+    // RGB colors for Forecground color and Background color.
+    colors: [
+        '97,189,109',
+        '26,188,156',
+        '84,172,210',
+        '44,130,201',
+        '147,101,184',
+        '71,85,119',
+        '204,204,204',
+        '65,168,95',
+        '0,168,133',
+        '61,142,185',
+        '41,105,176',
+        '85,57,130',
+        '40,50,78',
+        '118,118,118',
+        '247,218,100',
+        '251,160,38',
+        '235,107,86',
+        '226,80,65',
+        '163,143,132',
+        '239,239,239',
+        '255,255,255',
+        '250,197,28',
+        '243,121,52',
+        '209,72,65',
+        '184,49,47',
+        '124,112,107',
+        '209,213,216',
+        '0,0,0'
+    ],
+    // Inline formatting
+    formats: {
+        bold: {
+            tag: 'strong',
+            class: undef
+        },
+        italic: {
+            tag: 'em',
+            class: undef
+        },
+        underline: {
+            tag: 'u',
+            class: undef
+        },
+        strikethrough: {
+            tag: 'del',
+            class: undef
+        },
+        superscript: {
+            tag: 'sup'
+        },
+        subscript: {
+            tag: 'sub'
+        }
+    },
+    // Toolbar theme
+    theme: {
+        iconPrefix: 'fa',
+        icons: {
+            bold: 'fa-bold',
+            style: 'fa-paragraph',
+            inline: 'fa-bold',
+            italic: 'fa-italic',
+            underline: 'fa-underline',
+            strikethrough: 'fa-strikethrough',
+            superscript: 'fa-superscript',
+            subscript: 'fa-subscript',
+            link: 'fa-link',
+            unlink: 'fa-unlink',
+            ol: 'fa-list-ol',
+            ul: 'fa-list-ul',
+            image: 'fa-image',
+            table: 'fa-table',
+            colors: 'fa-tint',
+            forecolor: 'fa-pencil',
+            fontSize: 'fa-text-height',
+            video: 'fa-video-camera',
+            indent: 'fa-indent',
+            hr: 'fa-minus',
+            template: 'fa-columns',
+            alignLeft: 'fa-align-left',
+            alignCenter: 'fa-align-center',
+            alignRight: 'fa-align-right',
+            alignJustify: 'fa-align-justify',
+            html: 'fa-code',
+            undo: 'fa-undo',
+            redo: 'fa-repeat',
+            lock: 'fa-lock',
+            unlock: 'fa-unlock',
+            fullscreen: 'fa-expand',
+            normalscreen: 'fa-compress',
+            prev: 'fa-chevron-circle-left',
+            next: 'fa-chevron-circle-right'
+        },
+        color: undef
+    },
+    files: {
+        uploader: undef, // Uploader path
+        manager: undef, // Image manager path
+        // Security options
+        securityKey: undef, // Simplified security code
+        withCredentials: undef // CORS with cookie enabled
+    },
+    // Language option
+    locale: 'en',
+    // Custamise class
+    classSet: {
+        align_text: {
+            alignLeft: "wysiwyg-text-align-left",
+            alignCenter: "wysiwyg-text-align-center",
+            alignRight: "wysiwyg-text-align-right",
+            alignJustify: "wysiwyg-text-align-justify",
+            REG_EXP: /wysiwyg-text-align-[0-9a-z]+/g
+        },
+        indent: 'wysiwyg-indent',
+        foreColor: {
+            Black: 'wysiwyg-color-black',
+            Silver: 'wysiwyg-color-silver',
+            Gray: 'wysiwyg-color-grey',
+            Maroon: 'wysiwyg-color-maroon',
+            Red: 'wysiwyg-color-red',
+            Purple: 'wysiwyg-color-purple',
+            fuchsia: 'wysiwyg-color-fuchsia',
+            Green: 'wysiwyg-color-green',
+            Lime: 'wysiwyg-color-lime',
+            Olive: 'wysiwyg-color-olive',
+            Yellow: 'wysiwyg-color-yellow',
+            Navy: 'wysiwyg-color-navy',
+            Blue: 'wysiwyg-color-blue',
+            Teal: 'wysiwyg-color-teal',
+            Aqua: 'wysiwyg-color-aqua',
+            Orange: 'wysiwyg-color-orange',
+            REG_EXP: /wysiwyg-color-[0-9a-z]+/g
+        },
+        size_font: {
+            "x-small": "wysiwyg-font-size-x-small",
+            "small": "wysiwyg-font-size-small",
+            "medium": "wysiwyg-font-size-medium",
+            "large": "wysiwyg-font-size-large",
+            "x-large": "wysiwyg-font-size-x-large",
+            "xx-large": "wysiwyg-font-size-xx-large",
+            "smaller": "wysiwyg-font-size-smaller",
+            "larger": "wysiwyg-font-size-larger",
+            REG_EXP: /wysiwyg-font-size-[0-9a-z\-]+/g
+        },
+        buttons: {
+            btn: 'wysihtml5-btn',
+            save: 'wysihtml5-btn-save',
+            cancel: 'wysihtml5-btn-cancel',
+            choose: 'wysihtml5-btn-choose'
+        },
+        table: {
+            classes: {
+                bordered: 'wysiwyg-table-bordered',
+                striped: 'wysiwyg-table-striped'
+            },
+            responsive: 'wysiwyg-table-responsive'
+        },
+        error: 'wysihtml5-error',
+        video: {
+            wrapper: 'wysiwyg-video',
+            responsive: 'responsive'
+        },
+        insertTemplateWrapper: 'wysiwyg-insert',
+        image: {
+            float: {
+                left: "wysiwyg-float-left",
+                right: "wysiwyg-float-right",
+                REG_EXP: /wysiwyg-float-[0-9a-z]+/g
+            },
+            responsive: 'responsive'
+        },
+        // Class name which should be set on the contentEditable element in the created sandbox iframe, can be styled via the 'stylesheets' option
+        composerClassName: "wysihtml5-editor",
+        textareaClassName: "wysihtml5-textarea",
+        // Class name to add to the body when the wysihtml5 editor is supported
+        bodyClassName: "wysihtml5-supported",
+        // Classname of container that editor should not touch and pass through
+        // Pass false to disable
+        uneditableContainerClassname: "wysihtml5-uneditable-container"
+    },
+    // Show a character counter.
+    counter: 0, // 0:off 1:show
+    // Limit the number of characters a user can enter.
+    limiter: undef,
+    // Whether toolbar is displayed after init by script automatically.
+    // Can be set to false if toolobar is set to display only on editable area focus
+    showToolbarAfterInit: true,
+    // Whether urls, entered by the user should automatically become clickable-links
+    autoLink: true,
+    // Includes table editing events and cell selection tracking
+    handleTables: true,
+    // Tab key inserts tab into text as default behaviour. It can be disabled to regain keyboard navigation
+    handleTabKey: true,
+    // Object which includes parser rules to apply when html gets cleaned
+    // See parser_rules/*.js for examples
+    parserRules: {
+        tags: {
+            br: {},
+            span: {},
+            div: {},
+            p: {}
+        },
+        classes: {}
+    },
+    // Object which includes parser when the user inserts content via copy &amp; paste. If null parserRules will be used instead
+    pasteParserRulesets: null,
+    // Parser method to use when the user inserts content
+    parser: wysihtml5.dom.parse,
+    // By default wysihtml5 will insert a &lt;br&gt; for line breaks, set this to false to use &lt;p&gt;
+    useLineBreaks: true,
+    // Array (or single string) of stylesheet urls to be loaded in the editor's iframe
+    stylesheets: [],
+    // Placeholder text to use, defaults to the placeholder attribute on the textarea element
+    placeholderText: undef,
+    // Whether the rich text editor should be rendered on touch devices (wysihtml5 >= 0.3.0 comes with basic support for iOS 5)
+    supportTouchDevices: true,
+    // Whether senseless &lt;span&gt; elements (empty or without attributes) should be removed/replaced with their content
+    cleanUp: true,
+    // Whether to use div instead of secure iframe
+    contentEditableMode: false
+};</code></pre>
+    </section>
+
+    <script src="js/examples.js"></script>
+
+</body>
+
+</html>

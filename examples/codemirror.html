@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMirror | wysihtml5+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/theme/dracula.min.css" type="text/css">
+    <link rel="stylesheet" href="../dist/wysihtml5plus.min.css" type="text/css">
+    <link rel="stylesheet" href="css/examples.css" type="text/css">
+    <style type="text/css">
+        .current-view-codemirror {
+            display: none !important;
+        }
+        .CodeMirror {
+            font-size: .8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>CodeMirror</h1>
+        <div class="tabs">
+            <ul>
+                <li>Demo</li>
+                <li>Source</li>
+            </ul>
+            <div class="tab-content">
+        <textarea id="editable">
+           <p>Lorem ipsum dolor sit amet, has ponderum platonem an, no eam ridens ancillae. Vix in sale sententiae. At solet inermis repudiandae quo, facete facilis te cum, pro eu magna choro sanctus. Sed summo appetere ut. Mel ne exerci legimus, pri option veritus intellegam ne.</p>
+           <p>Liber regione tincidunt ea eos, pro an veniam causae sadipscing. Te dicam dolore inciderint duo, probo quaestio percipitur no cum. Te atqui putent forensibus vim, eum te virtute sadipscing, ancillae suavitate interesset at sea. Iusto volutpat mel ad, fastidii delicata ad eum. Id nam movet praesent. Nostro laoreet cu sea, est omittam molestie suavitate at.</p>
+           <p>In duo laudem moderatius. An mei labore possim discere. Falli dicant accusata per eu, te per quodsi pertinax definitiones. In ridens impetus eam, te quodsi bonorum voluptua mei.</p>
+       </textarea>
+                
+            </div>
+            <div class="tab-content">
+                <pre><code class="language-markup">// include plugin
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.css" type="text/css"&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.js" &gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/mode/xml/xml.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/mode/htmlmixed/htmlmixed.min.js"&gt;&lt;/script&gt;
+
+&lt;style&gt;
+    /* CSS */
+    .current-view-codemirror {
+        display: none !important;
+    }
+&lt;/style&gt;
+
+&lt;script&gt;
+    // Initialize             
+    var element = document.getElementById('editable'),
+        editor = new wysihtml5.Editor(element, {
+            toolbar: {
+                button: ['inline', 'block', 'html']
+            },
+            parserRules: wysihtml5ParserRules
+        });
+
+    editor.on("change_view", function(currentView) {
+        var code;
+        element.classList.toggle('current-view-codemirror');
+        if (currentView === 'textarea') {
+            code = CodeMirror.fromTextArea(textarea, {
+                mode: "text/html",
+                theme: 'dracula',
+                lineNumbers: true,
+                lineWrapping: true,
+            });
+            code.getDoc().setValue(editor.getValue());
+            code.on("change", function(e) {
+                element.value = marked(e.getValue());
+            });
+        } else {
+            code.toTextArea();
+        }
+    });
+&lt;/script&gt;</code></pre>
+            </div>
+                
+            </div>
+
+    </section>
+
+    <script src="js/examples.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+    <script src="../dist/wysihtml5plus.min.js"></script>
+    <script src="../parser_rules/advanced_and_extended.js"></script>
+    <script class="async">
+        var code = null,
+            textarea = document.getElementById('editable'),
+            editor = new wysihtml5.Editor(textarea, {
+                toolbar: {
+                    button: ['inline', 'block', 'html']
+                },
+                contentEditableMode: true,
+                parserRules: wysihtml5ParserRules
+            });
+
+        editor.on("change_view", function(currentView) {
+            if (currentView === 'textarea') {
+                code = CodeMirror.fromTextArea(textarea, {
+                    mode: "text/html",
+                    theme: 'dracula',
+                    lineNumbers: true,
+                    lineWrapping: true,
+                });
+                code.getDoc().setValue(editor.getValue());
+                code.on("change", function(e) {
+                    textarea.value = marked(e.getValue());
+                });
+            } else {
+                code.toTextArea();
+            }
+            classie.toggleClass(textarea, 'current-view-codemirror');
+        });
+    </script>
+
+</body>
+
+</html>
