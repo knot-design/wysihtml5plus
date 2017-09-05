@@ -1,6 +1,5 @@
 # wysihtml5+
-Simplify wysiwyg editor. Easy to use, Image Uploader and Image Manager included, Multiple language support and more..
-Its based on wysihtml5(https://github.com/xing/wysihtml5).
+Simple WYSIWYG HTML editor. Its based on wysihtml5(https://github.com/xing/wysihtml5).
 
 ## Features
 - Easy to use.
@@ -11,6 +10,10 @@ Its based on wysihtml5(https://github.com/xing/wysihtml5).
 - Image Uploader/Manager included.
 - Speech-input for Chrome.
 - No jQuery required.
+
+## Browser Support
+IE9+, Edge, Chrome, Firefox 3.5+, Safari 4+, Opera 11+
+
 
 ## DEMO
 https://knot-design.jp/wysihtml5plus/
