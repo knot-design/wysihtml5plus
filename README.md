@@ -1,5 +1,6 @@
 # wysihtml5+
 Simple WYSIWYG HTML editor. Its based on wysihtml5(https://github.com/xing/wysihtml5).
+
 ![Preview](https://github.com/knot-design/wysihtml5plus/wiki/images/preview.gif)
 
 ## Features
